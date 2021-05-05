@@ -1,9 +1,9 @@
 #include "draw.h"
+#include "shared.h"
 #include <GL/glut.h>
 #include <stdio.h>
 #include <math.h>
 
-double room_size = 200;
 GLuint displayList1;
 GLuint displayList2;
 GLuint boxList;
@@ -114,13 +114,13 @@ void draw_room_left(Room room)
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_EXT_CLAMP_TO_EDGE);
     glBegin(GL_QUADS);
     glTexCoord2f(1.0, 1.0);
-    glVertex3f(-room_size, 0, -room_size);
+    glVertex3f(-room_size_x, 0, -room_size_z);
     glTexCoord2f(1.0, 0.0);
-    glVertex3f(-room_size, room_size, -room_size);
+    glVertex3f(-room_size_x, room_size_y, -room_size_z);
     glTexCoord2f(0.0, 0.0);
-    glVertex3f(-room_size, room_size, room_size);
+    glVertex3f(-room_size_x, room_size_y, room_size_z);
     glTexCoord2f(0.0, 1.0);
-    glVertex3f(-room_size, 0, room_size);
+    glVertex3f(-room_size_x, 0, room_size_z);
     glEnd();
 }
 void draw_room_right(Room room)
@@ -129,13 +129,13 @@ void draw_room_right(Room room)
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_EXT_CLAMP_TO_EDGE);
     glBegin(GL_QUADS);
     glTexCoord2f(1.0, 1.0);
-    glVertex3f(room_size, 0, room_size);
+    glVertex3f(room_size_x, 0, room_size_z);
     glTexCoord2f(1.0, 0.0);
-    glVertex3f(room_size, room_size, room_size);
+    glVertex3f(room_size_x, room_size_y, room_size_z);
     glTexCoord2f(0.0, 0.0);
-    glVertex3f(room_size, room_size, -room_size);
+    glVertex3f(room_size_x, room_size_y, -room_size_z);
     glTexCoord2f(0.0, 1.0);
-    glVertex3f(room_size, 0, -room_size);
+    glVertex3f(room_size_x, 0, -room_size_z);
     glEnd();
 }
 void draw_room_front(Room room)
@@ -144,13 +144,13 @@ void draw_room_front(Room room)
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_EXT_CLAMP_TO_EDGE);
     glBegin(GL_QUADS);
     glTexCoord2f(0.0, 1.0);
-    glVertex3f(-room_size, 0, -room_size);
+    glVertex3f(-room_size_x, 0, -room_size_z);
     glTexCoord2f(1.0, 1.0);
-    glVertex3f(room_size, 0, -room_size);
+    glVertex3f(room_size_x, 0, -room_size_z);
     glTexCoord2f(1.0, 0.0);
-    glVertex3f(room_size, room_size, -room_size);
+    glVertex3f(room_size_x, room_size_y, -room_size_z);
     glTexCoord2f(0.0, 0.0);
-    glVertex3f(-room_size, room_size, -room_size);
+    glVertex3f(-room_size_x, room_size_y, -room_size_z);
     glEnd();
 }
 void draw_room_back(Room room)
@@ -159,13 +159,13 @@ void draw_room_back(Room room)
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_EXT_CLAMP_TO_EDGE);
     glBegin(GL_QUADS);
     glTexCoord2f(1.0, 1.0);
-    glVertex3f(-room_size, 0, room_size);
+    glVertex3f(-room_size_x, 0, room_size_z);
     glTexCoord2f(1.0, 0.0);
-    glVertex3f(-room_size, room_size, room_size);
+    glVertex3f(-room_size_x, room_size_y, room_size_z);
     glTexCoord2f(0.0, 0.0);
-    glVertex3f(room_size, room_size, room_size);
+    glVertex3f(room_size_x, room_size_y, room_size_z);
     glTexCoord2f(0.0, 1.0);
-    glVertex3f(room_size, 0, room_size);
+    glVertex3f(room_size_x, 0, room_size_z);
     glEnd();
 }
 void draw_room_top(Room room)
@@ -174,13 +174,13 @@ void draw_room_top(Room room)
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_EXT_CLAMP_TO_EDGE);
     glBegin(GL_QUADS);
     glTexCoord2f(1.0, 1.0);
-    glVertex3f(room_size, room_size, room_size);
+    glVertex3f(room_size_x, room_size_y, room_size_z);
     glTexCoord2f(1.0, 0.0);
-    glVertex3f(room_size, room_size, -room_size);
+    glVertex3f(room_size_x, room_size_y, -room_size_z);
     glTexCoord2f(0.0, 0.0);
-    glVertex3f(-room_size, room_size, -room_size);
+    glVertex3f(-room_size_x, room_size_y, -room_size_z);
     glTexCoord2f(0.0, 1.0);
-    glVertex3f(-room_size, room_size, room_size);
+    glVertex3f(-room_size_x, room_size_y, room_size_z);
 
     glEnd();
 }
@@ -191,13 +191,13 @@ void draw_room_bottom(Room room)
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_EXT_CLAMP_TO_EDGE);
     glBegin(GL_QUADS);
     glTexCoord2f(1.0, 1.0);
-    glVertex3f(room_size, 0, room_size);
+    glVertex3f(room_size_x, 0, room_size_z);
     glTexCoord2f(1.0, 0.0);
-    glVertex3f(room_size, 0, -room_size);
+    glVertex3f(room_size_x, 0, -room_size_z);
     glTexCoord2f(0.0, 0.0);
-    glVertex3f(-room_size, 0, -room_size);
+    glVertex3f(-room_size_x, 0, -room_size_z);
     glTexCoord2f(0.0, 1.0);
-    glVertex3f(-room_size, 0, room_size);
+    glVertex3f(-room_size_x, 0, room_size_z);
 
     glEnd();
 }

@@ -1,9 +1,9 @@
 #include "camera.h"
+#include "shared.h"
 #include <GL/glut.h>
 #include <math.h>
 
 #define M_PI 3.14159265358979323846
-#define size 200
 
 double degree_to_radian(double degree)
 {
@@ -12,25 +12,19 @@ double degree_to_radian(double degree)
 
 void can_move(struct Camera *camera)
 {
-    if (camera->position.x > size || camera->position.x < -size || camera->position.z < -size || camera->position.z > size)
+    if (camera->position.x > room_size_x ||
+        camera->position.x < -room_size_x ||
+        camera->position.y > room_size_y ||
+        camera->position.y < 0 ||
+        camera->position.z < -room_size_z ||
+        camera->position.z > room_size_z)
         camera->position = camera->prev_position;
-
-    if (camera->position.x > -190 && camera->position.x < 190 && camera->position.y > -150 && camera->position.y < 150)
-    {
-        if (camera->position.x > -10 && camera->position.x < 10)
-        {
-            if ((camera->position.z < -160 && camera->position.z > -140 && camera->position.y < 125) || (camera->position.z < -140 && camera->position.z > -160 && camera->position.y > -7 && camera->position.y < 125))
-            {
-                camera->position = camera->prev_position;
-            }
-        }
-    }
 }
 
 void init_camera(struct Camera *camera)
 {
     camera->position.x = 0;
-    camera->position.y = 0;
+    camera->position.y = 100;
     camera->position.z = 0;
 
     camera->pose.x = 0;
@@ -115,15 +109,13 @@ void step_camera_right(struct Camera *camera, double distance)
 void move_camera_up(struct Camera *camera, double distance)
 {
     camera->prev_position = camera->position;
-    if (camera->position.y < size - 10)
-        camera->position.y += distance;
+    camera->position.y += distance;
     can_move(camera);
 }
 
 void move_camera_down(struct Camera *camera, double distance)
 {
     camera->prev_position = camera->position;
-    if (camera->position.y > 10)
-        camera->position.y -= distance;
+    camera->position.y -= distance;
     can_move(camera);
 }

@@ -72,7 +72,6 @@ typedef struct
 
 typedef struct
 {
-    int ground;
     Room room;
     //Entity entity1
 

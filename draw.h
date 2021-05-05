@@ -1,6 +1,7 @@
 #ifndef DRAW_H
 #define DRAW_H
 
+#include "shared.h"
 #include "model.h"
 
 #ifndef GL_EXT_texture_edge_clamp

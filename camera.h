@@ -1,6 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
+#include "shared.h"
 #include "model.h"
 
 #define CAMERA_SPEED 10.0
