@@ -69,6 +69,8 @@ void update_camera_position(struct Camera *camera, double elapsed_time)
         move_camera_down(camera, distance);
     }
 
+    move_camera_down(camera, distance / 5);
+
     if (action.increase_light == TRUE)
     {
         if (light_ambient[0] < 1)
